@@ -1,39 +1,20 @@
 {
-  "name": "traktor",
+  "name": "oclif-hello-world",
+  "description": "oclif example Hello World CLI",
   "version": "0.0.0",
-  "description": "cli tool to extract tractor data",
-  "author": "Chris Ortiz @chrisortiz11",
+  "author": "Salesforce",
   "bin": {
-    "traktor": "./bin/run"
+    "oex": "./bin/run"
   },
-  "homepage": "https://github.com/chrisortiz11/traktor",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "repository": "chrisortiz11/traktor",
-  "files": [
-    "/bin",
-    "/dist",
-    "/npm-shrinkwrap.json",
-    "/oclif.manifest.json"
-  ],
+  "bugs": "https://github.com/oclif/hello-world/issues",
   "dependencies": {
-    "@oclif/core": "^1",
+    "@oclif/core": "^1.13.10",
     "@oclif/plugin-help": "^5",
-    "@oclif/plugin-plugins": "^2.0.1",
-    "axios": "^0.27.2",
-    "chalk": "^5.0.1",
-    "cheerio": "^1.0.0-rc.10",
-    "csv-write-stream": "^2.0.0",
-    "csv-writer": "^1.6.0",
-    "excel4node": "^1.8.0",
-    "fs-extra": "^10.1.0",
-    "inquirer": "^8.2.4",
-    "open": "^8.4.0"
+    "@oclif/plugin-plugins": "^2.0.1"
   },
   "devDependencies": {
     "@oclif/test": "^2",
     "@types/chai": "^4",
-    "@types/fs-extra": "^9.0.13",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.9.4",
     "chai": "^4",
@@ -48,9 +29,24 @@
     "tslib": "^2.3.1",
     "typescript": "^4.4.3"
   },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "files": [
+    "/bin",
+    "/dist",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/oclif/hello-world",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
   "oclif": {
-    "bin": "traktor",
-    "dirname": "traktor",
+    "bin": "oex",
+    "dirname": "oex",
     "commands": "./dist/commands",
     "plugins": [
       "@oclif/plugin-help",
@@ -63,6 +59,7 @@
       }
     }
   },
+  "repository": "oclif/hello-world",
   "scripts": {
     "build": "shx rm -rf dist && tsc -b",
     "lint": "eslint . --ext .ts --config .eslintrc",
@@ -72,12 +69,5 @@
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif readme && git add README.md"
   },
-  "engines": {
-    "node": ">=12.0.0"
-  },
-  "bugs": "https://github.com/chrisortiz11/traktor/issues",
-  "keywords": [
-    "oclif"
-  ],
   "types": "dist/index.d.ts"
 }
