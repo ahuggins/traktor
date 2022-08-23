@@ -1,10 +1,6 @@
 import {Command, Flags} from '@oclif/core'
-import { write } from 'fs';
-const fs = require('fs-extra');
-// var csvWriter = require('csv-write-stream')
-// var writer = csvWriter()
-const csvWriter = require('csv-writer');
-const path = require('path');
+
+import writer from '../writer';
 
 const cheerio = require('cheerio');
 
@@ -18,23 +14,9 @@ export default class ParseSource extends Command {
   public async run(): Promise<void> {
     const {args, flags} = await this.parse(ParseSource)
 
+    this.log(flags.source)
+
     const $ = cheerio.load(flags.source);
-
-    if(!fs.existsSync(path.resolve(__dirname, '..', '..', 'out.csv'))) {
-      
-      const writer = csvWriter.createObjectCsvWriter({
-        path: path.resolve(__dirname, '..', '..', 'out.csv'),
-        header: headers,
-      });
-      
-      await writer.writeRecords([])
-    }
-
-    const appender = csvWriter.createObjectCsvWriter({
-      path: path.resolve(__dirname, '..', '..', 'out.csv'),
-      header: headers,
-      append: true,
-    });
 
     const data: any = [];
 
@@ -53,12 +35,12 @@ export default class ParseSource extends Command {
         condition: getFieldLabel('Condition:', $),
         auction_event_details: $('.auction-event-details .auction-event-details').text()?.replace(' View on Map', ''),
         auction_type: $('.col-xs-6:nth-child(3) .basic-bold .basic-non-bold').text()?.replaceAll('\n', ''),
-        auction_house_link: `https://www.machinerypete.com/${$('.auction-event a').attr('href')}`,
+        auction_house_link: `https://www.machinerypete.com${$('.auction-event a').attr('href')}`,
         auction_house_name: $('.auction-event a').text(),
         year: parseInt($('h3').text().substring(0,4)) ? $('h3').text().substring(0,4) : 'unknown',
     })  
     })
-    await appender.writeRecords(data);
+    await writer.writeRecords(data);
   }
 }
 
@@ -69,20 +51,3 @@ function getFieldLabel(keyText: string, $: any) {
     return $(el).text();
   })[0]?.replaceAll('\n', '')?.replaceAll(keyText, '')
 }
-
-const headers = [
-
-  { id: 'auction_id_maybe', title: 'Auction Id Maybe' },
-  { id: 'title', title: 'Title'},
-  { id: 'price', title: 'Price'},
-  { id: 'sold_date', title: 'Sold Date'},
-  { id: 'specs_array', title: 'Specs Array'},
-  { id: 'specs', title: 'Specs'},
-  { id: 'hours', title: 'Hours'},
-  { id: 'condition', title: 'Condition'},
-  { id: 'auction_event_details', title: 'Auction Event Details'},
-  { id: 'auction_type', title: 'Auction Type'},
-  { id: 'auction_house_link', title: 'Auction House Link'},
-  { id: 'auction_house_name', title: 'Auction House Name'},
-  { id: 'year', title: 'Year'},
-]

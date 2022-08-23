@@ -7,16 +7,20 @@ export default class GetSource extends Command {
 
   static flags = {
     url: Flags.string(),
+    tab: Flags.string({
+      required: true,
+    }),
   }
 
   public async run(): Promise<string | null> {
     const {args, flags} = await this.parse(GetSource)
 
-    this.log(`GettingSource FROM GetSourceURL: ${flags.url}`)
+    this.log(`GettingSource from: ${flags.url}`)
+    
 
     if(flags.url) {
 
-      await openUrl(flags.url);
+      await openUrl(flags.url, flags.tab);
   
       await new Promise(r => setTimeout(r, 2000));
   
@@ -26,7 +30,7 @@ export default class GetSource extends Command {
         source = idk
       });
   
-      await new Promise(r => setTimeout(r, 2000));
+      await new Promise(r => setTimeout(r, 1000));
   
       return source;
     }
@@ -40,6 +44,7 @@ async function getTheSource(callback: Function){ return exec("chrome-cli source"
 })}
 
 
-async function openUrl(url: string) {
-  return exec(`chrome-cli open ${url}`)
+async function openUrl(url: string, tab: string | null) {
+  return exec(`chrome-cli open '${url}' ${ tab ? `-t ${tab}` : ''}`)
 }
+
