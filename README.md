@@ -72,8 +72,12 @@ There are a couple things that are weird, and we may have to make some adjustmen
 > SUPER IMPORTANT!
 > 
 > Only have one tab open with Machinery Pete loaded.
+> 
+> Also, dont have multiple chrome windows open. Only have one window, and one tab with Machinery Pete open. 
+> 
+> You can have other tabs open, but just dont have more than one window.
 
 1. You need to have Chrome open in order for this to work
-2. You should setup Machinery Pete for the results you want
-   1. As in, set the category, and other filters you want reflected.
+2. You should load Machinery Pete search results for the results you want
+   1. As in, set the category, and other filters you want reflected and submit it. You'll want to start from the first page
 3. 
