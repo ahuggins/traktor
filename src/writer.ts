@@ -1,5 +1,5 @@
 const path = require('path');
-// const fs = require('fs-extra');
+const fs = require('fs-extra');
 const csvWriter = require('csv-writer');
 
 const csvPath = path.resolve(__dirname, '..', 'out.csv');
@@ -25,5 +25,14 @@ const writer = csvWriter.createObjectCsvWriter({
     path: csvPath,
     header: headers,
 });
+
+export const createWriter = (name: string = 'out.csv'): any => {
+  const thisPath = path.resolve(__dirname, '..', name);
+  return csvWriter.createObjectCsvWriter({
+    path: thisPath,
+    append: fs.pathExistsSync(thisPath) ? true : false ,
+    header: headers
+  })
+}
 
 export default writer;
