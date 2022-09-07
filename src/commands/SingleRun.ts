@@ -1,7 +1,10 @@
-import {Command, Flags} from '@oclif/core'
+import {Command, Flags, CliUx} from '@oclif/core'
 import GetSource from './GetSource'
+import GetPageLimit from './GetPageLimit'
 import ParseSource from './ParseSource'
 const { exec } = require("child_process");
+
+const cheerio = require('cheerio');
 
 export default class SingleRun extends Command {
   static description = 'SingleRun of a url'
@@ -34,8 +37,34 @@ export default class SingleRun extends Command {
 
     params.set('limit', 72)
 
+    let date = new Date();
+
+
+    let name = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}_${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
+
+     name = `${name}_${await CliUx.ux.prompt('what is the name of the file to export?')}`;
+
+    const initialPageSource = await GetPageLimit.run([
+      '--url',
+      `https://www.machinerypete.com/auction_results?${params.toString()}`,
+      '--tab',
+      tab
+    ]);
+
+    const $ = cheerio.load(initialPageSource);
+
+    const test = $('.pagination.pagination-md li:last-child > a')
+
+    let maxPage = 1;
+    if(test.length > 0) {
+      const havePage = new URLSearchParams(test.attr('href')).get('page')
+      console.log({ havePage })
+      maxPage = havePage ? parseInt(havePage) : 1;
+    } 
+
+    console.log({ maxPage, name })
     
-    for (let index = 1; index < 10; index++) {
+    for (let index = 1; index < maxPage; index++) {
       
       params.set('page', index)
       
@@ -51,7 +80,7 @@ export default class SingleRun extends Command {
       commandParams.push(flags.tab ? flags.tab : tab ? tab : '')
       const source = await GetSource.run(commandParams);
   
-      await ParseSource.run(['--source', source]);
+      await ParseSource.run(['--source', source, '--file', name]);
 
       await new Promise(r => setTimeout(r, 6000));
       
