@@ -80,4 +80,3 @@ There are a couple things that are weird, and we may have to make some adjustmen
 1. You need to have Chrome open in order for this to work
 2. You should load Machinery Pete search results for the results you want
    1. As in, set the category, and other filters you want reflected and submit it. You'll want to start from the first page
-3. 
