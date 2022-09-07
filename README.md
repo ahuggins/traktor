@@ -1,337 +1,79 @@
-oclif-hello-world
-=================
-
-oclif example Hello World CLI
-
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/oclif-hello-world.svg)](https://npmjs.org/package/oclif-hello-world)
-[![CircleCI](https://circleci.com/gh/oclif/hello-world/tree/main.svg?style=shield)](https://circleci.com/gh/oclif/hello-world/tree/main)
-[![Downloads/week](https://img.shields.io/npm/dw/oclif-hello-world.svg)](https://npmjs.org/package/oclif-hello-world)
-[![License](https://img.shields.io/npm/l/oclif-hello-world.svg)](https://github.com/oclif/hello-world/blob/main/package.json)
-
-<!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
-# Usage
-<!-- usage -->
-```sh-session
-$ npm install -g traktor
-$ traktor COMMAND
-running command...
-$ traktor (--version)
-traktor/0.0.0 darwin-x64 node-v16.13.2
-$ traktor --help [COMMAND]
-USAGE
-  $ traktor COMMAND
-...
-```
-<!-- usagestop -->
-# Commands
-<!-- commands -->
-- [oclif-hello-world](#oclif-hello-world)
-- [Usage](#usage)
-- [Commands](#commands)
-  - [`traktor hello PERSON`](#traktor-hello-person)
-  - [`traktor hello world`](#traktor-hello-world)
-  - [`traktor help [COMMAND]`](#traktor-help-command)
-  - [`traktor plugins`](#traktor-plugins)
-  - [`traktor plugins:install PLUGIN...`](#traktor-pluginsinstall-plugin)
-  - [`traktor plugins:inspect PLUGIN...`](#traktor-pluginsinspect-plugin)
-  - [`traktor plugins:install PLUGIN...`](#traktor-pluginsinstall-plugin-1)
-  - [`traktor plugins:link PLUGIN`](#traktor-pluginslink-plugin)
-  - [`traktor plugins:uninstall PLUGIN...`](#traktor-pluginsuninstall-plugin)
-  - [`traktor plugins:uninstall PLUGIN...`](#traktor-pluginsuninstall-plugin-1)
-  - [`traktor plugins:uninstall PLUGIN...`](#traktor-pluginsuninstall-plugin-2)
-  - [`traktor plugins update`](#traktor-plugins-update)
+# Traktor
 
-## `traktor hello PERSON`
+A Cli tool to help extract data
 
-Say hello
 
-```
-USAGE
-  $ traktor hello [PERSON] -f <value>
+## Intro/Installation
 
-ARGUMENTS
-  PERSON  Person to say hello to
+#### Basic Intro
 
-FLAGS
-  -f, --from=<value>  (required) Whom is saying hello
+This is a Node package which used [OCLIF](https://oclif.io/) to be built. That means you will need to install Node and NPM to your machine in order to use it.
 
-DESCRIPTION
-  Say hello
+## Open a Terminal
 
-EXAMPLES
-  $ oex hello friend --from oclif
-  hello friend from oclif! (./src/commands/hello/index.ts)
-```
+The easiest way to get to a Terminal is to open Spotlight (this is opened by `cmd + space`). You should see something that says "Spotlight Search"
 
-_See code: [dist/commands/hello/index.ts](https://github.com/chrisortiz11/traktor/blob/v0.0.0/dist/commands/hello/index.ts)_
+In that, type "Terminal", it should show something like:
 
-## `traktor hello world`
+`Terminal -- Application`
 
-Say hello world
+Select that one and it should open a new Terminal.
 
-```
-USAGE
-  $ traktor hello world
+### Check if Node/NPM are installed
 
-DESCRIPTION
-  Say hello world
+In the "Terminal" run `node -v && npm -v` and if you see two version strings like (X.X.X where X is a number), then you should be good to go to the next step.
 
-EXAMPLES
-  $ oex hello world
-  hello world! (./src/commands/hello/world.ts)
-```
+The easiest way to do that is to go to [nodejs.org](https://nodejs.org/en/download/) and then choose the appropriate installer.
 
-## `traktor help [COMMAND]`
+For Mac you can probably use this link: [node-v16.17.0.pkg](https://nodejs.org/dist/v16.17.0/node-v16.17.0.pkg)
 
-Display help for traktor.
+Once downloaded, you may have to double click the file in order for it to install.
 
-```
-USAGE
-  $ traktor help [COMMAND] [-n]
+### Node/NPM has been installed
 
-ARGUMENTS
-  COMMAND  Command to show help for.
+We are going to just use Git to share code (I think it's easier than publishing new versions for quick changes because you can update with a `git pull` command rather than me publishing a new version of the Traktor tool, and then you having to update.
 
-FLAGS
-  -n, --nested-commands  Include all nested commands in the output.
+Somewhere on your computer, you have a "code" folder, hopefully you can navigate there with terminal commands, if not, just hit me up.
 
-DESCRIPTION
-  Display help for traktor.
-```
+But when you get to the folder you want to store this application, then you need to run:
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.12/src/commands/help.ts)_
+`git clone git@github.com:ahuggins/traktor.git`
 
-## `traktor plugins`
+This will create a new folder in the one you are in called `traktor`
 
-List installed plugins.
+Now you will want to `cd traktor` to enter that folder. (You only want to `git clone` one time... just navigate to the folder we just created in the future.)
 
-```
-USAGE
-  $ traktor plugins [--core]
+### Install dependencies
 
-FLAGS
-  --core  Show core plugins.
+Because this is a Node application (essentially) we need some dependencies in order to run our application. So you will need to run `npm install` in the directory. You will only need to do this after `git pull` in the future.
 
-DESCRIPTION
-  List installed plugins.
+### Run Traktor
 
-EXAMPLES
-  $ traktor plugins
-```
+Most things should be installed now, there are a couple other tools that are required, but I tried to make this easy, so I setup a command you can run that should pull in the other tools needed.
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.0.11/src/commands/plugins/index.ts)_
+Simply run:
 
-## `traktor plugins:install PLUGIN...`
+`bin/dev Ready`
 
-Installs a plugin into the CLI.
+What this is doing is checking to see if you have [Homebrew](https://brew.sh/) installed, if you do it does nothing, if you dont it tries to install it.
 
-```
-USAGE
-  $ traktor plugins:install PLUGIN...
+> You may have to give it permission to install this.
 
-ARGUMENTS
-  PLUGIN  Plugin to install.
+Once Homebrew is installed, it then checks for the `chrome-cli` tool. If it is found, it does nothing, if not, it installs it with homebrew.
 
-FLAGS
-  -f, --force    Run yarn install with force flag.
-  -h, --help     Show CLI help.
-  -v, --verbose
+Ideally this should be done by running this command, but once those are installed, you should be good to go.
 
-DESCRIPTION
-  Installs a plugin into the CLI.
+## Scraping data
 
-  Can be installed from npm or a git url.
+This is probably what you are most interested in.
 
-  Installation of a user-installed plugin will override a core plugin.
+There are a couple things that are weird, and we may have to make some adjustments.
 
-  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
-  will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
-  the CLI without the need to patch and update the whole CLI.
+> SUPER IMPORTANT!
+> 
+> Only have one tab open with Machinery Pete loaded.
 
-ALIASES
-  $ traktor plugins add
-
-EXAMPLES
-  $ traktor plugins:install myplugin
-
-  $ traktor plugins:install https://github.com/someuser/someplugin
-
-  $ traktor plugins:install someuser/someplugin
-```
-
-## `traktor plugins:inspect PLUGIN...`
-
-Displays installation properties of a plugin.
-
-```
-USAGE
-  $ traktor plugins:inspect PLUGIN...
-
-ARGUMENTS
-  PLUGIN  [default: .] Plugin to inspect.
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Displays installation properties of a plugin.
-
-EXAMPLES
-  $ traktor plugins:inspect myplugin
-```
-
-## `traktor plugins:install PLUGIN...`
-
-Installs a plugin into the CLI.
-
-```
-USAGE
-  $ traktor plugins:install PLUGIN...
-
-ARGUMENTS
-  PLUGIN  Plugin to install.
-
-FLAGS
-  -f, --force    Run yarn install with force flag.
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Installs a plugin into the CLI.
-
-  Can be installed from npm or a git url.
-
-  Installation of a user-installed plugin will override a core plugin.
-
-  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
-  will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
-  the CLI without the need to patch and update the whole CLI.
-
-ALIASES
-  $ traktor plugins add
-
-EXAMPLES
-  $ traktor plugins:install myplugin
-
-  $ traktor plugins:install https://github.com/someuser/someplugin
-
-  $ traktor plugins:install someuser/someplugin
-```
-
-## `traktor plugins:link PLUGIN`
-
-Links a plugin into the CLI for development.
-
-```
-USAGE
-  $ traktor plugins:link PLUGIN
-
-ARGUMENTS
-  PATH  [default: .] path to plugin
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Links a plugin into the CLI for development.
-
-  Installation of a linked plugin will override a user-installed or core plugin.
-
-  e.g. If you have a user-installed or core plugin that has a 'hello' command, installing a linked plugin with a 'hello'
-  command will override the user-installed or core plugin implementation. This is useful for development work.
-
-EXAMPLES
-  $ traktor plugins:link myplugin
-```
-
-## `traktor plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ traktor plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ traktor plugins unlink
-  $ traktor plugins remove
-```
-
-## `traktor plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ traktor plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ traktor plugins unlink
-  $ traktor plugins remove
-```
-
-## `traktor plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ traktor plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ traktor plugins unlink
-  $ traktor plugins remove
-```
-
-## `traktor plugins update`
-
-Update installed plugins.
-
-```
-USAGE
-  $ traktor plugins update [-h] [-v]
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Update installed plugins.
-```
-<!-- commandsstop -->
+1. You need to have Chrome open in order for this to work
+2. You should setup Machinery Pete for the results you want
+   1. As in, set the category, and other filters you want reflected.
+3. 
