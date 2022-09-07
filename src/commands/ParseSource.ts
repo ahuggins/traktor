@@ -1,6 +1,6 @@
 import {Command, Flags} from '@oclif/core'
 
-import writer from '../writer';
+import { createWriter } from '../writer';
 
 const cheerio = require('cheerio');
 
@@ -8,17 +8,22 @@ export default class ParseSource extends Command {
   static description = 'Parse source sent to it'
 
   static flags = {
-    source: Flags.string()
+    source: Flags.string(),
+    file: Flags.string(),
   }
 
   public async run(): Promise<void> {
     const {args, flags} = await this.parse(ParseSource)
 
-    this.log(flags.source)
+    const filename = flags.file?.includes('.csv') ? flags.file : `${flags.file}.csv`;
+    this.log(`outputting to: ${filename}`)
+
 
     const $ = cheerio.load(flags.source);
 
     const data: any = [];
+
+    const writer = createWriter(filename)
 
     $('.listing-wrapper').each((index:any, el: any) => {
 
@@ -40,7 +45,12 @@ export default class ParseSource extends Command {
         year: parseInt($('h3').text().substring(0,4)) ? $('h3').text().substring(0,4) : 'unknown',
     })  
     })
-    await writer.writeRecords(data);
+    if(data.length > 0) {
+      await writer.writeRecords(data);
+    } else {
+      this.log(`rerunning`)
+      await this.run()
+    }
   }
 }
 
