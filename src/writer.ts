@@ -19,6 +19,7 @@ const headers = [
     { id: 'auction_house_link', title: 'Auction House Link'},
     { id: 'auction_house_name', title: 'Auction House Name'},
     { id: 'year', title: 'Year'},
+    { id: 'subcategory', title: 'Subcategory'}
   ]
 
 const writer = csvWriter.createObjectCsvWriter({
