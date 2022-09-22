@@ -80,7 +80,7 @@ export default class SingleRun extends Command {
       commandParams.push(flags.tab ? flags.tab : tab ? tab : '')
       const source = await GetSource.run(commandParams);
   
-      await ParseSource.run(['--source', source, '--file', name]);
+      await ParseSource.run(['--source', source, '--file', name, '--url', url]);
 
       await new Promise(r => setTimeout(r, 6000));
       
