@@ -21,7 +21,7 @@
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.0.1",
     "axios": "^0.27.2",
-    "chalk": "^5.0.1",
+    "chalk": "^5.1.2",
     "cheerio": "^1.0.0-rc.10",
     "csv-write-stream": "^2.0.0",
     "csv-writer": "^1.6.0",
