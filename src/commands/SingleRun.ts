@@ -64,7 +64,7 @@ export default class SingleRun extends Command {
 
     console.log({ maxPage, name })
     
-    for (let index = 1; index < maxPage; index++) {
+    for (let index = 1; index <= maxPage; index++) {
       
       params.set('page', index)
       
