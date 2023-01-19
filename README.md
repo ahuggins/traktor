@@ -49,6 +49,10 @@ Because this is a Node application (essentially) we need some dependencies in or
 
 ### Run Traktor
 
+There is one setting you have to enable in Chrome for all this to work. Go to Chrome, then in the menu bar, go to, "VIEW" -> "DEVELOPER" -> "ALLOW JAVASCRIPT FROM APPLE EVENTS".
+
+^^^^^ THIS HAS to be enabled in order for this to work. If not it will crap out and look like it doesn't do shit. IT IS THIS Setting that allows the `chrome-cli` tool to be able to interact/control Chrome. So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.So do not skip this step.
+
 Most things should be installed now, there are a couple other tools that are required, but I tried to make this easy, so I setup a command you can run that should pull in the other tools needed.
 
 Simply run:
