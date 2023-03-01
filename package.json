@@ -29,7 +29,7 @@
     "fs-extra": "^10.1.0",
     "inquirer": "^8.2.4",
     "listr": "^0.14.3",
-    "open": "^8.4.0"
+    "open": "^8.4.2"
   },
   "devDependencies": {
     "@oclif/test": "^2",
